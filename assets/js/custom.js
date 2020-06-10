@@ -6,6 +6,7 @@
         $("#tabs").tabs();
     });
 
+/*
 	$(window).scroll(function() {
 	  var scroll = $(window).scrollTop();
 	  var box = $('.header-text').height();
@@ -17,7 +18,7 @@
 	    $("header").removeClass("background-header");
 	  }
 	});
-	
+*/
 
 	$('.schedule-filter li').on('click', function() {
         var tsfilter = $(this).data('tsfilter');
