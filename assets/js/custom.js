@@ -85,12 +85,15 @@
 	    $('.nav a').each(function () {
 	        var currLink = $(this);
 	        var refElement = $(currLink.attr("href"));
-	        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
-	            $('.nav ul li a').removeClass("active");
-	            currLink.addClass("active");
-	        }
-	        else{
-	            currLink.removeClass("active");
+	        if (typeof refElement.position() !== 'undefined')
+	        {
+		        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+		            $('.nav ul li a').removeClass("active");
+		            currLink.addClass("active");
+		        }
+		        else{
+		            currLink.removeClass("active");
+		        }
 	        }
 	    });
 	}
@@ -120,6 +123,16 @@
 			}
 		});
 	}
+
+
+	$('.video-container').each(function() {
+		var container = $(this);
+		container.find('.play-button').on('click', function(){
+			// Pull the video url from the data attribute on the wrapper element
+			container.html('<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + container.data('video-id') + '?rel=0&modestbranding=1&autoplay=1"></iframe>');
+		});
+	});
+
 
 
 })(window.jQuery);
