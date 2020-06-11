@@ -1031,7 +1031,7 @@ trainers
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 55%;
+  padding-bottom: 56.2%;
   overflow: hidden;
   background: black;
 }
@@ -1055,7 +1055,32 @@ trainers
 
 #trainers .trainer-item img {
   width: 100%;
-  margin: -10% 0;
+  margin: -9.36% 0;
+}
+
+#trainers .trainer-item.color-red {
+  background-color: #cc0c00ff;
+  color: #cc0c00ff;
+}
+#trainers .trainer-item.color-blue {
+  background-color: #00b5e2ff;
+  color: #00b5e2ff;
+}
+#trainers .trainer-item.color-green {
+  background-color: #84bd00ff;
+  color: #84bd00ff;
+}
+#trainers .trainer-item.color-yellow {
+  background-color: #ffcd00ff;
+  color: #ffcd00ff;
+}
+#trainers .trainer-item.color-emerald {
+  background-color: #00af66ff;
+  color: #00af66ff;
+}
+#trainers .trainer-item.color-purple {
+  background-color: #5c88daff;
+  color: #5c88daff;
 }
 
 /*
@@ -1076,20 +1101,23 @@ trainers
 #trainers .video-header h3 {
   font-size: 30px;
   font-weight: 700;
-  color: #232d39;
+  /*color: #232d39;*/
+  color: white;
   letter-spacing: 0.5px;
   padding: 13px;
   float: left;
 }
 
 #trainers .video-header a {
+  border: 3px solid white;
   margin: 10px;
   float: right;
   border-radius: 100px;
   font-size: 13px;
   padding: 11px 17px;
-  background-color: #232d39;
-  color: #fff;
+  /*background-color: #232d39;*/
+  /*background-color: white;*/
+  color: white;
   text-align: center;
   font-weight: 400;
   letter-spacing: 0px;
@@ -1099,9 +1127,11 @@ trainers
 }
 
 #trainers .video-header a:hover {
-  background-color: #f9735b;
+  background-color: white;
+  color: inherit;
   cursor: pointer;
 }
+
 
 
 /*
