@@ -1,11 +1,3 @@
-/*
-
-TemplateMo 548 Training Studio
-
-https://templatemo.com/tm-548-training-studio
-
-*/
-
 /* ---------------------------------------------
 Table of contents
 ------------------------------------------------
@@ -25,7 +17,7 @@ Table of contents
 --------------------------------------------- */
 /* 
 ---------------------------------------------
-font & reset css
+font
 --------------------------------------------- 
 */
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
@@ -106,6 +98,47 @@ p {
   font-size: 14px;
   line-height: 25px;
   color: #7a7a7a;
+}
+
+/*
+---------------------------------------------
+Scroll reveal
+--------------------------------------------- 
+*/
+section { 
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+  flex-direction: column;
+  padding: 2vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-size: 4vw; 
+}
+/*
+section:first-of-type { 
+  text-transform: uppercase;
+  font-size: 7vw;
+}
+section:first-of-type, section.pop { 
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0,0,0,0.4); 
+}
+*/
+section:nth-of-type(odd) { 
+  background: #fff;
+}
+section#entrenamiento { 
+  background-image: url(../images/entrenamiento-bg.jpg); 
+}
+section#alimentacion { 
+  background-image: url(../images/entrenamiento-bg.jpg); 
+}
+section#salud { 
+  background-image: url(../images/entrenamiento-bg.jpg); 
 }
 
 /* 
@@ -1026,8 +1059,64 @@ Appoinments
 trainers
 --------------------------------------------- 
 */
+.slick-prev {
+    left: -25px;
+}
 
-#trainers .video-container {
+.slick-next {
+    right: -25px;
+}
+
+.slick-prev, .slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 100%;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    /*background: transparent;*/
+    background: rgba(36,36,36,.5);
+}
+
+/*
+font-size: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border: none;
+    padding: 0;
+    height: 100%;
+    background: none;
+    width: 2.5rem;
+    color: #fff;
+    background: #242424;
+    background: rgba(36,36,36,.5);
+    visibility: visible;
+    z-index: 2;
+*/
+
+.slider-item {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+  margin-bottom: 30px;
+}
+
+.video-container img {
+  width: 100%;
+  margin: -9.5% 0;
+}
+
+.video-container {
   position: relative;
   width: 100%;
   height: 0;
@@ -1036,7 +1125,7 @@ trainers
   background: black;
 }
 
-#trainers .video-container iframe {
+.video-container iframe {
   border-radius: 2px;
   position: absolute;
   top: 0;
@@ -1045,18 +1134,6 @@ trainers
   height: 100%;
 }
 
-
-#trainers .trainer-item {
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
-  margin-bottom: 30px;
-}
-
-#trainers .trainer-item img {
-  width: 100%;
-  margin: -9.5% 0;
-}
 
 /*
 #trainers .trainer-item img {
@@ -1073,7 +1150,7 @@ trainers
   margin-bottom: 10px;
 }
 */
-#trainers .video-header h3 {
+.video-header h3 {
   font-size: 30px;
   font-weight: 700;
   color: #232d39;
@@ -1082,7 +1159,7 @@ trainers
   float: left;
 }
 
-#trainers .video-header a {
+.video-header a {
   border: 3px solid #232d39;
   margin: 10px;
   float: right;
@@ -1100,7 +1177,7 @@ trainers
   line-height: 20px;
 }
 
-#trainers .video-header a:hover {
+.video-header a:hover {
   background-color: #232d39;
   color: white;
   cursor: pointer;

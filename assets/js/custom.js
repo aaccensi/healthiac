@@ -57,6 +57,54 @@
 
 
 	$(document).ready(function () {
+		// Initialize slick sliders
+		$('.section-slider').slick({
+		  lazyLoad: 'ondemand',
+		  dots: true,
+		  infinite: true,
+		  speed: 300,
+		  /*swipeToSlide: true,*/
+		  slidesToShow: 6,
+		  slidesToScroll: 6,
+		  responsive: [
+			{
+		      breakpoint: 1700,
+		      settings: {
+		        slidesToShow: 5,
+		        slidesToScroll: 5
+		      }
+		    },
+			{
+		      breakpoint: 1400,
+		      settings: {
+		        slidesToShow: 4,
+		        slidesToScroll: 4
+		      }
+		    },
+			{
+		      breakpoint: 1100,
+		      settings: {
+		        slidesToShow: 3,
+		        slidesToScroll: 3
+		      }
+		    },
+		    {
+		      breakpoint: 800,
+		      settings: {
+		        slidesToShow: 2,
+		        slidesToScroll: 2
+		      }
+		    },
+		    {
+		      breakpoint: 500,
+		      settings: {
+		        slidesToShow: 1,
+		        slidesToScroll: 1
+		      }
+		    }
+		  ]
+	  	});
+
 	    $(document).on("scroll", onScroll);
 	    
 	    //smoothscroll
@@ -111,6 +159,7 @@
 	// Window Resize Mobile Menu Fix
 	$(window).on('resize', function() {
 		mobileNav();
+		//slidesToScroll();
 	});
 
 
@@ -124,8 +173,18 @@
 			}
 		});
 	}
-
-
+/*
+	function slidesToScroll() {
+	    if ($(window).width() >= 1280) {
+	        $('.section-slider').slick('slickSetOption', 'slidesToScroll', 3, true);
+	        console.log("SLIDES 3");
+	    } else {
+	        $('.section-slider').slick('slickSetOption', 'slidesToScroll', 1, true);
+	        console.log("SLIDES 1");
+	    }
+	}
+*/
+	// Dynamic video iframes
 	$('.video-container').each(function() {
 		var container = $(this);
 		container.find('.play-button').on('click', function(){
@@ -133,7 +192,5 @@
 			container.html('<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + container.data('video-id') + '?rel=0&modestbranding=1&autoplay=1"></iframe>');
 		});
 	});
-
-
 
 })(window.jQuery);
