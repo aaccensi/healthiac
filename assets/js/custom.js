@@ -58,14 +58,53 @@
 
 	$(document).ready(function () {
 		// Initialize slick sliders
+		$('.achievement-slider').slick({
+		  centerMode: true,
+		  centerPadding: '0px',
+		  swipeToSlide: true,
+		  slidesToShow: 15,
+		  speed: 300,
+		  responsive: [
+			{
+		      breakpoint: 1700,
+		      settings: {
+		        slidesToShow: 13,
+		      }
+		    },
+			{
+		      breakpoint: 1400,
+		      settings: {
+		        slidesToShow: 12,
+		      }
+		    },
+			{
+		      breakpoint: 1100,
+		      settings: {
+		        slidesToShow: 9,
+		      }
+		    },
+		    {
+		      breakpoint: 800,
+		      settings: {
+		        slidesToShow: 7,
+		      }
+		    },
+		    {
+		      breakpoint: 500,
+		      settings: {
+		        slidesToShow: 5,
+		      }
+		    }
+		  ]
+	  	});
+
 		$('.section-slider').slick({
 		  lazyLoad: 'ondemand',
 		  dots: true,
 		  infinite: true,
-		  speed: 300,
-		  /*swipeToSlide: true,*/
 		  slidesToShow: 6,
 		  slidesToScroll: 6,
+		  speed: 300,
 		  responsive: [
 			{
 		      breakpoint: 1700,
@@ -121,7 +160,7 @@
 	        menu = target;
 	       	var target = $(this.hash);
 	        $('html, body').stop().animate({
-	            scrollTop: (target.offset().top) + 1
+	            scrollTop: (target.offset().top) - 20
 	        }, 500, 'swing', function () {
 	            window.location.hash = target;
 	            $(document).on("scroll", onScroll);
@@ -191,6 +230,43 @@
 			// Pull the video url from the data attribute on the wrapper element
 			container.html('<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + container.data('video-id') + '?rel=0&modestbranding=1&autoplay=1"></iframe>');
 		});
+	});
+
+	// Achievement foldout
+	$('.achievements-button').click(function(){
+		var topSection = $('section:first-of-type');
+		var foldout = $('.achievements-foldout');
+		var button = $('.achievements-button');
+
+		if (foldout.hasClass("folded")) // Unfold
+		{
+			var height = $('.achievement-container .circle').first().height()+78;
+			topSection.css('margin-top', (height+50)+'px');	
+			foldout.removeClass('folded');
+			foldout.height(height-80);
+			button.addClass('arrow');
+			button.html('<');
+		}
+		else // Fold
+		{
+			topSection.css('margin-top', '50px');
+			foldout.addClass('folded');
+			foldout.height(-80);
+			button.removeClass('arrow');
+			button.html('LOGROS');
+		}
+	});
+
+	// Achievement info
+	$('.achievement-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+		var img = $(slick.$slides.get(nextSlide)).find('img');
+		$('.achievements-info h3').html(img.data('title'));
+		$('.achievements-info p').html(img.attr('alt'));
+	});
+
+	// Achievement lock/unlock simulation
+	$(".achievement-container").click(function(){
+		$(this).toggleClass('locked');
 	});
 
 })(window.jQuery);
