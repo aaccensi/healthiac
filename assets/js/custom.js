@@ -40,7 +40,7 @@
 
 
 	// Window Resize Mobile Menu Fix
-	mobileNav();
+	mobileNavigation();
 
 
 	// Scroll animation init
@@ -60,7 +60,8 @@
 		// Initialize slick sliders
 		$('.achievement-slider').slick({
 		  centerMode: true,
-		  centerPadding: '0px',
+		  infinite: true,
+		  centerPadding: '2px',
 		  swipeToSlide: true,
 		  slidesToShow: 15,
 		  speed: 300,
@@ -74,7 +75,7 @@
 			{
 		      breakpoint: 1400,
 		      settings: {
-		        slidesToShow: 12,
+		        slidesToShow: 11,
 		      }
 		    },
 			{
@@ -197,13 +198,14 @@
 
 	// Window Resize Mobile Menu Fix
 	$(window).on('resize', function() {
-		mobileNav();
+		mobileNavigation();
+		unfoldedAchievements();
 		//slidesToScroll();
 	});
 
 
 	// Window Resize Mobile Menu Fix
-	function mobileNav() {
+	function mobileNavigation() {
 		var width = $(window).width();
 		$('.submenu').on('click', function() {
 			if(width < 767) {
@@ -234,26 +236,25 @@
 
 	// Achievement foldout
 	$('.achievements-button').click(function(){
-		var topSection = $('section:first-of-type');
-		var foldout = $('.achievements-foldout');
-		var button = $('.achievements-button');
-
-		if (foldout.hasClass("folded")) // Unfold
+		if ($('.achievements-foldout').hasClass("folded"))
 		{
-			var height = $('.achievement-container .circle').first().height()+78;
-			topSection.css('margin-top', (height+50)+'px');	
-			foldout.removeClass('folded');
-			foldout.height(height-80);
-			button.addClass('arrow');
-			button.html('<');
+			// Unfold
+			var circle = $('.achievement-container .circle').first();
+			var height = $(circle).height()+78;
+			var width = $(circle).width()+6;
+			
+			$('.achievements-foldout').height(height-80).removeClass('folded'); 					// Move the unfolded element down (by increaseing its height)
+			$('.achievements-button').html('<').addClass('arrow'); 									// Change the fold button content and style
+			$('.achievement-slider .slick-arrow').width(width).height(width).css('opacity', '1'); 	// Show arrows (addapted to the current circle size)
+			$('section:first-of-type').css('margin-top', (height+50)+'px');							// Move "top of the page" along
 		}
-		else // Fold
+		else
 		{
-			topSection.css('margin-top', '50px');
-			foldout.addClass('folded');
-			foldout.height(-80);
-			button.removeClass('arrow');
-			button.html('LOGROS');
+			// Fold
+			$('.achievements-foldout').height(-80).addClass('folded');			// Move the folded element up (by reducing its height)
+			$('.achievements-button').html('LOGROS').removeClass('arrow');		// hange the fold button content and style
+			$('.achievement-slider .slick-arrow').css('opacity', '0');			// Hide arrows
+			$('section:first-of-type').css('margin-top', '50px');				// Move "top of the page" back to original position
 		}
 	});
 
@@ -263,6 +264,18 @@
 		$('.achievements-info h3').html(img.data('title'));
 		$('.achievements-info p').html(img.attr('alt'));
 	});
+
+	function unfoldedAchievements() {
+		if (!$('.achievements-foldout').hasClass("folded"))
+		{
+			var circle = $('.achievement-container .circle').first();
+			var height = $(circle).height()+78;
+			var width = $(circle).width()+6;
+			$('.achievements-foldout').height(height-80);
+			$('.achievement-slider .slick-arrow').width(width).height(width).css('opacity', '1');;
+			$('section:first-of-type').css('margin-top', (height+50)+'px');
+		}
+	}
 
 	// Achievement lock/unlock simulation
 	$(".achievement-container").click(function(){
